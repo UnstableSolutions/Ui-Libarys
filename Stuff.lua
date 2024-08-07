@@ -2772,7 +2772,7 @@ Menu.Container("AutoFarm", "Box Farm", "Left")
 
 
 
-Menu.CheckBox("Aiming", "Box Farm", "Checkbox", false, function(value) 
+Menu.CheckBox("AutoFarm", "Box Farm", "Checkbox", false, function(value) 
     print(value)
 end, "Checkbox Tooltip")
 
