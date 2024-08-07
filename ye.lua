@@ -2764,6 +2764,12 @@ Menu:SetVisible(true)
 Menu:Init()
 
 ]]
+Menu.Tab("Auto Farms")
+
+Menu.CheckBox("Auto Farm", "YES", "Checkbox", false, function(value) 
+    print(value)
+    end, "Checkbox Tooltip")
+
 Menu.Tab("Settings")
 Menu.Container("Settings", "Settings", "Left")
 
