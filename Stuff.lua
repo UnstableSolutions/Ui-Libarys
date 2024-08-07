@@ -2771,6 +2771,19 @@ Menu.Container("AutoFarm", "Box Farm", "Left")
 
 
 
+
+Menu.CheckBox("Aiming", "Box Farm", "Checkbox", false, function(value) 
+    print(value)
+end, "Checkbox Tooltip")
+
+
+
+
+
+
+
+
+--// Settings no no touch nega
 Menu.Tab("Settings")
 Menu.Container("Settings", "Settings", "Left")
 
