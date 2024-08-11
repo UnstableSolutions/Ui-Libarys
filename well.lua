@@ -2735,3 +2735,17 @@ function Menu:Init()
         Menu.ScreenSize = Menu.Screen.AbsoluteSize
     end)
 end
+
+Menu.Hotkey("Settings", "Settings", "Menu Keybind", nil, function(value)
+    game:GetService("UserInputService").InputBegan:connect(function(input, Processed)
+        if not Processed then
+            if input.KeyCode == value then 
+                if Menu_Frame.Visible then
+                    Menu_Frame.Visible = false
+                else
+                    Menu_Frame.Visible = true
+                end
+            end
+        end
+    end)
+end, "menu bind")
