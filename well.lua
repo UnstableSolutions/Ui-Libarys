@@ -23,7 +23,7 @@ local camera = workspace.CurrentCamera
 
 
 local Settings = {
-    Accent = Color3.fromHex("#00A3E0"),
+    Accent = Color3.fromHex("#9910B5"),
     Font = Enum.Font.SourceSans,
     IsBackgroundTransparent = true,
     Rounded = false,
@@ -1896,6 +1896,24 @@ function Menu.MultiSelect(Tab_Name: string, Container_Name: string, Name: string
     return #Items
 end
 
+local function equipBoxTool(tool)
+    local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+    if humanoid and tool then
+        humanoid:EquipTool(tool)
+        tool.Parent = game.Players.LocalPlayer.Character
+    end
+end
+local function checkAndEquipBoxes()
+    local backpack = game.Players.LocalPlayer.Backpack
+    local boxes = backpack:GetChildren()
+
+    for _, box in ipairs(boxes) do
+        if box.Name == "Box" then
+            equipBoxTool(box)
+            break
+        end
+    end
+end
 
 function Menu.ListBox(Tab_Name: string, Container_Name: string, Name: string, Multi: boolean, Value_Items: table, Callback: any, ToolTip: string): ListBox
     local Container = GetContainer(Tab_Name, Container_Name)
@@ -2717,124 +2735,3 @@ function Menu:Init()
         Menu.ScreenSize = Menu.Screen.AbsoluteSize
     end)
 end
-
---
-
-
--- UI LIB ABOVE
-
-
-
---[[ lib demo
-
-Menu.ComboBox("Aiming", "YES", "Combobox", "One", {"One", "Two", "Three"}, function(value)
-    print(value)
-end, "ComboBox Tooltip")
-
-Menu.ColorPicker("Aiming", "YES", "Colorpicker", Color3.fromRGB(255, 0, 0), 1, function(value)
-    print(value)
-end, "Colorpicker Tooltip")
-
-Menu.Slider("Aiming", "YES", "Slider", 1, 100, 50, "%", 0, function(value)
-    print(value)
-end, "Slider Tooltip")
-
-Menu.Label("Aiming", "YES", "Label", "Label Tooltip")
-
-Menu.CheckBox("Aiming", "YES", "Checkbox", false, function(value) 
-print(value)
-end, "Checkbox Tooltip")
-
-Menu.TextBox("Aiming", "YES", "Textbox", ""..fraudfun., function(value)
-print(value)
-end, "Silent Aim Prediction")
-
-Menu.Hotkey("Aiming", "YES", "Hotkey", nil, function(value)
-    game:GetService("UserInputService").InputBegan:connect(function(input, Processed)
-        if not Processed then
-            if input.KeyCode == value then 
-
-            end
-        end
-    end)
-end, "Keybind Nigga")
-
-Menu:SetTitle("fraud.lol")
-Menu:SetVisible(true)
-Menu:Init()
-
-]]
-Menu.Tab("Combat")
-Menu.Tab("Visuals")
-Menu.Tab("AutoFarm")
-Menu.Container("AutoFarm", "Box Farm", "Left")
-
-
-
-
-Menu.CheckBox("AutoFarm", "Box Farm", "Checkbox", false, function(value) 
-    print(value)
-end, "Checkbox Tooltip")
-
-
-
-
-
-
-
-
---// Settings no no touch nega
-Menu.Tab("Settings")
-Menu.Container("Settings", "Settings", "Left")
-
-
-
-
-Menu.Hotkey("Settings", "Settings", "Menu Keybind", nil, function(value)
-    game:GetService("UserInputService").InputBegan:connect(function(input, Processed)
-        if not Processed then
-            if input.KeyCode == value then 
-                if Menu_Frame.Visible then
-                    Menu_Frame.Visible = false
-                else
-                    Menu_Frame.Visible = true
-                end
-            end
-        end
-    end)
-end, "menu bind")
-
-Menu.ColorPicker("Settings", "Settings", "UI Color", Color3.fromHex("#00A3E0"), 1, function(value)
-    Menu.Accent = value
-end, "Colorpicker Tooltip")
-
-Menu.Button("Settings", "Settings", "discord.gg/", function(value)
-    local request = (syn and syn.request) or (http and http.request) or http_request or request
-    local HttpService = game:GetService("HttpService")
-    if request then
-        request({
-            Url = 'http://127.0.0.1:6463/rpc?v=1',
-            Method = 'POST',
-            Headers = {
-                ['Content-Type'] = 'application/json',
-                Origin = 'https://discord.com'
-            },
-            Body = HttpService:JSONEncode({
-                cmd = 'INVITE_BROWSER',
-                nonce = HttpService:GenerateGUID(false),
-                args = {code = ""}
-            })
-        })
-    end
-end, "joins discord server")
-local text = {"b", "br", "bro", "bron", "bronx", "bronx.", "bronx.l", "bronx.lo", "bronx.lol", "bronx.lol | ", "bronx.lol | n", "bronx.lol | ne", "bronx.lol | new", "bronx.lol | newp", "bronx.lol | newpo", "bronx.lol | newpor", "bronx.lol | newport", "bronx.lol | newport w", "bronx.lol | newport wa", "bronx.lol | newport was", "bronx.lol | newport was h", "bronx.lol | newport was he", "bronx.lol | newport was her", "bronx.lol | newport was here", "bronx.lol | newport was her", "bronx.lol | newport was he", "bronx.lol | newport was h", "bronx.lol | newport was", "bronx.lol | newport wa", "bronx.lol | newport w", "bronx.lol | newport", "bronx.lol | newpor", "bronx.lol | newpo", "bronx.lol | newp", "bronx.lol | new", "bronx.lol | ne", "bronx.lol | n", "bronx.lol |", "bronx.lol", "bronx.lo", "bronx.l", "bronx.", "bronx", "bron", "bro", "br", "b", ""}
-task.spawn(function()
-    while task.wait() do
-        for _, txt in pairs(text) do
-            task.wait(0.5)
-            Menu:SetTitle(txt)
-        end
-    end
-end)
-Menu:SetVisible(true)
-Menu:Init()
