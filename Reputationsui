@@ -23,7 +23,7 @@ local camera = workspace.CurrentCamera
 
 
 local Settings = {
-    Accent = Color3.fromHex("#9910B5"),
+    Accent = Color3.fromHex("#00A3E0"),
     Font = Enum.Font.SourceSans,
     IsBackgroundTransparent = true,
     Rounded = false,
@@ -2717,10 +2717,56 @@ function Menu:Init()
         Menu.ScreenSize = Menu.Screen.AbsoluteSize
     end)
 end
-                                 
-Menu:SetTitle('Reputations<font color="#9910B5">.lua | Developer Build</font>')
+
+--
+
+
+-- UI LIB ABOVE
+
+
+
+--[[ lib demo
+
+Menu.ComboBox("Aiming", "YES", "Combobox", "One", {"One", "Two", "Three"}, function(value)
+    print(value)
+end, "ComboBox Tooltip")
+
+Menu.ColorPicker("Aiming", "YES", "Colorpicker", Color3.fromRGB(255, 0, 0), 1, function(value)
+    print(value)
+end, "Colorpicker Tooltip")
+
+Menu.Slider("Aiming", "YES", "Slider", 1, 100, 50, "%", 0, function(value)
+    print(value)
+end, "Slider Tooltip")
+
+Menu.Label("Aiming", "YES", "Label", "Label Tooltip")
+
+Menu.CheckBox("Aiming", "YES", "Checkbox", false, function(value) 
+print(value)
+end, "Checkbox Tooltip")
+
+Menu.TextBox("Aiming", "YES", "Textbox", ""..fraudfun., function(value)
+print(value)
+end, "Silent Aim Prediction")
+
+Menu.Hotkey("Aiming", "YES", "Hotkey", nil, function(value)
+    game:GetService("UserInputService").InputBegan:connect(function(input, Processed)
+        if not Processed then
+            if input.KeyCode == value then 
+
+            end
+        end
+    end)
+end, "Keybind Nigga")
+
+Menu:SetTitle("fraud.lol")
 Menu:SetVisible(true)
-Menu:SetSize(500, 400)
+Menu:Init()
+
+]]
+if string.match(identifyexecutor(), "Solara") then
+    game:GetService("Players").LocalPlayer:Kick("Sorry but we dont support solara.")
+end
 
 Menu.Tab("Combat")
 Menu.Tab("Visuals")
@@ -3370,4 +3416,7 @@ Menu.Button("Settings", "Settings", "discord.gg/", function(value)
         })
     end
 end, "joins discord server")
+
+Menu:SetTitle("nigga")
+Menu:SetVisible(true)
 Menu:Init()
